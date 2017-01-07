@@ -1,35 +1,57 @@
-const POSITIONS_LIMIT = 6;
+const CARTRIDGES_LIMIT = 6;
 
 export class Cylinder
 {
     constructor() {
-        this._positions = [];
-        this._pointer = 0;
+        this._cartridges = {
+            1: null,
+            2: null,
+            3: null,
+            4: null,
+            5: null,
+            6: null
+        };
+        this._pointer = 1;
+        this._freeCartridges = CARTRIDGES_LIMIT;
     }
 
     addBullets(bullets) {
-        let limit = (bullets + this.usedPositions);
+        let limit = (this._freeCartridges - bullets);
 
-        if (limit > POSITIONS_LIMIT) {
+        if (limit < 0) {
             throw new Error();
         }
 
         for (let i = 1; i <= bullets; i++) {
-            let value = this._positions[this.usedPositions - 1];
-            this._positions.push(value + 1);
+            for (let k = 1; k <= CARTRIDGES_LIMIT; k++) {
+                if (!this._cartridges[k]) {
+                    this._cartridges[k] = true;
+                    this._freeCartridges--;
+                    break;
+                }
+            }
         }
     }
 
-    moveToNextPosition() {
-        
+    moveToNext() {
+        this._cartridges[this._pointer] = null;
+        this._freeCartridges++;
+        this._pointer++;
     }
 
-    get usedPositions() {
-        return this._positions.length;
+    get show() {
+        return this._cartridges;
     }
 
-    get isFull() {
-        return this.usedPositions === POSITIONS_LIMIT;
+    get freeCartridges() {
+        return this._freeCartridges;
     }
 
+    get bullets() {
+        return CARTRIDGES_LIMIT - this._freeCartridges;
+    }
+
+    get isLoaded() {
+        return this._freeCartridges === 0;
+    }
 }

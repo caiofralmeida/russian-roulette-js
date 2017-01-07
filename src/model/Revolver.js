@@ -1,29 +1,19 @@
-const CYLINDER_LIMIT = 6;
-
 export class Revolver {
-    constructor(bullets = 0) {
-        if (bullets > CYLINDER_LIMIT) {
-            throw new Error(`Bullets on revolver limit is ${CYLINDER_LIMIT}.`);
-        }
-        this._bullets = bullets;
-        this._cylinderPosition = 1;
+    constructor(bullets = 0, cylinder) {
+        this._cylinder = cylinder;
+        this._cylinder.addBullets(bullets);
     }
 
     shoot() {
-        if (this._bullets === 0) {
+        if (this._cylinder.bullets === 0) {
             return;
         }
 
-        this._moveCylinder();
-        --this._bullets;
-    }
-
-    _moveCylinder() {
-        ++this._cylinderPosition;
+        this._cylinder.moveToNext();
     }
 
     get bulletsOnCylinder() {
-        return this._bullets;
+        return this._cylinder.bullets;
     }
 
     get cylinderPosition() {
