@@ -1,4 +1,4 @@
-import {Cylinder} from '../src/model/Cylinder.js';
+import Cylinder from '../src/model/Cylinder.js';
 
 describe('A cylinder of revolver functionality', () => {
    it('a new cylinder', () => {
