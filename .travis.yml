@@ -6,7 +6,7 @@ before_install:
   - npm install
 
 script:
-  - npm run tests
+  - npm run tests-ci
 
 notifications:
   email:
