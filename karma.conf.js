@@ -12,14 +12,13 @@ module.exports = function(config) {
         preprocessors: {
             'test-context.js': ['webpack']
         },
-
         webpack: {
             module: {
                 loaders: [
                     { test: /\.js/, exclude: /node_modules/, loader: 'babel-loader' }
                 ]
             },
-            watch: false
+            watch: true
         }
     });
 };

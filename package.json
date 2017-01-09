@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "tests": "karma start"
+    "tests": "karma start",
+    "tests-ci": "karma start --single-run"
   },
   "devDependencies": {
     "babel-loader": "^5.0.0",
