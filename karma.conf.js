@@ -19,7 +19,7 @@ module.exports = function(config) {
                     { test: /\.js/, exclude: /node_modules/, loader: 'babel-loader' }
                 ]
             },
-            watch: true
+            watch: false
         }
     });
 };
