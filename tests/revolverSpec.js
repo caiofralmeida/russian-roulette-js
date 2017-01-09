@@ -1,16 +1,16 @@
-import {Revolver} from '../src/model/Revolver.js';
-import {Cylinder} from '../src/model/Cylinder.js';
+import Revolver from '../src/model/Revolver.js';
+import Cylinder from '../src/model/Cylinder.js';
 
 describe('A revolver functionality', () => {
    it('should fire a bullet', () => {
-       let revolver = new Revolver(6, new Cylinder());
+       let revolver = new Revolver(6);
        revolver.shoot();
 
        expect(revolver.bulletsOnCylinder).toEqual(5);
    });
 
    it('try fire a gun without a bullet', () => {
-       let revolver = new Revolver(0, new Cylinder());
+       let revolver = new Revolver(0);
 
        revolver.shoot();
 
@@ -18,6 +18,6 @@ describe('A revolver functionality', () => {
    });
 
    it('try add exccedded bullets on revolver', () => {
-       expect(() => new Revolver(10, new Cylinder())).toThrow();
+       expect(() => new Revolver(10)).toThrow();
    });
 });

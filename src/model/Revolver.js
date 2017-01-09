@@ -1,6 +1,8 @@
-export class Revolver {
-    constructor(bullets = 0, cylinder) {
-        this._cylinder = cylinder;
+import Cylinder from './Cylinder';
+
+export default class Revolver {
+    constructor(bullets = 0) {
+        this._cylinder = new Cylinder();
         this._cylinder.addBullets(bullets);
     }
 
