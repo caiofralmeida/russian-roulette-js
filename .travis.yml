@@ -1,0 +1,16 @@
+language: node_js
+
+sudo: false
+
+node_js:
+  - '6.1'
+
+before_install:
+ - npm install
+
+script:
+ - npm run tests
+
+notifications:
+  email:
+- caio.f.r.amd@gmail.com
