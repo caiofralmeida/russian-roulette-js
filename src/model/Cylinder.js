@@ -1,6 +1,6 @@
 const CARTRIDGES_LIMIT = 6;
 
-export default class Cylinder
+class Cylinder
 {
     constructor() {
         this._cartridges = {
