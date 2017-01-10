@@ -11,14 +11,23 @@ export default class Revolver {
             return;
         }
 
-        this._cylinder.moveToNext();
+        try {
+            this._cylinder.moveToNext();
+            return true;
+        } catch (e) {
+            return false;
+        }
+    }
+
+    spinCylinder(force) {
+        let position = force;
+        while (position > this._cylinder.cartridgesLimit) {
+            position = parseInt(position / this._cylinder.cartridgesLimit);
+        }
+        this._cylinder.spin(position);
     }
 
     get bulletsOnCylinder() {
         return this._cylinder.bullets;
-    }
-
-    get cylinderPosition() {
-        return this._cylinderPosition;
     }
 }

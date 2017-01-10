@@ -20,4 +20,35 @@ describe('A revolver functionality', () => {
    it('try add exccedded bullets on revolver', () => {
        expect(() => new Revolver(10)).toThrow();
    });
+
+   it('reload revolver and spin cylinder', () => {
+       let revolver = new Revolver(6);
+
+       revolver.spinCylinder(10);
+       revolver.shoot();
+
+       expect(revolver.bulletsOnCylinder).toEqual(5);
+   });
+
+   it('add one bullet on revolver and spin cylinder then fire a falsy shoot', () => {
+       let revolver = new Revolver(1);
+
+       revolver.spinCylinder(20);
+
+       let result = revolver.shoot();
+
+       expect(revolver.bulletsOnCylinder).toEqual(1);
+       expect(result).toBeFalsy();
+   });
+
+   it('add one bullet on revolver and spin cylinder then fire a truthy shoot', () => {
+       let revolver = new Revolver(1);
+
+       revolver.spinCylinder(0);
+
+       let result = revolver.shoot();
+
+       expect(revolver.bulletsOnCylinder).toEqual(0);
+       expect(result).toBeTruthy();
+   });
 });

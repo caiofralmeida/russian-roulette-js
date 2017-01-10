@@ -12,7 +12,8 @@ export default class Cylinder
             6: null
         };
         this._pointer = 1;
-        this._freeCartridges = CARTRIDGES_LIMIT;
+        this.cartridgesLimit = 6;
+        this._freeCartridges = this.cartridgesLimit;
     }
 
     addBullets(bullets) {
@@ -23,7 +24,7 @@ export default class Cylinder
         }
 
         for (let i = 1; i <= bullets; i++) {
-            for (let k = 1; k <= CARTRIDGES_LIMIT; k++) {
+            for (let k = 1; k <= this.cartridgesLimit; k++) {
                 if (!this._cartridges[k]) {
                     this._cartridges[k] = true;
                     this._freeCartridges--;
@@ -34,9 +35,25 @@ export default class Cylinder
     }
 
     moveToNext() {
-        this._cartridges[this._pointer] = null;
+        let actualPointer = this._pointer;
+
+        this.spin(1);
+
+        if (!this._cartridges[actualPointer]) {
+            throw new Error('bullet not found.');
+        }
+
+        this._cartridges[actualPointer] = null;
         this._freeCartridges++;
-        this._pointer++;
+    }
+
+    spin(position) {
+        for (let i = 1; i <= position; i++) {
+            if (this._pointer == this.cartridgesLimit) {
+                this._pointer = 1;
+            }
+            this._pointer++;
+        }
     }
 
     get show() {
@@ -48,7 +65,7 @@ export default class Cylinder
     }
 
     get bullets() {
-        return CARTRIDGES_LIMIT - this._freeCartridges;
+        return this.cartridgesLimit - this._freeCartridges;
     }
 
     get isLoaded() {
