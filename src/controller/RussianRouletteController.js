@@ -1,4 +1,4 @@
-//import Revolver from '../model/Revolver';
+import Revolver from '../model/Revolver';
 
 class RussianRouletteController {
     constructor() {

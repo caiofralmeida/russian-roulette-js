@@ -1,9 +1,11 @@
 {
   "scripts": {
     "tests": "karma start",
-    "tests-ci": "karma start --single-run"
+    "tests-ci": "karma start --single-run",
+    "build": "babel src --out-file public/dist/bundle.js"
   },
   "devDependencies": {
+    "babel-cli": "^6.0.0",
     "babel-loader": "^5.0.0",
     "webpack": "^1.8.4",
     "jasmine-core": "^2.2.0",
